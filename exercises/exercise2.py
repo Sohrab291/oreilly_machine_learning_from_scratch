@@ -37,7 +37,7 @@ b1 = 1.0  # red beta
 b2 = 1.0  # green beta
 b3 = 1.0  # blue beta
 
-iterations = ?
+iterations = 10000
 
 
 # calculate maximum likelihood
@@ -46,7 +46,7 @@ iterations = ?
 def predict_probability(red, green, blue):
     x = -(b0 + (b1 * red) + (b2 * green) + (b3 * blue))
     odds = exp(x)
-    p = ?
+    p = 1/(1.0001+odds)
     return p
 
 
@@ -77,7 +77,7 @@ for i in range(iterations):
         if c.dark_font_ind == 1:
             new_likelihood += log(probability)
         else:
-            new_likelihood += log(? - probability)
+            new_likelihood += log(1.0001 - probability)
 
     # If solution improves, keep it and make it new best likelihood. Otherwise undo the adjustment
     if best_likelihood < new_likelihood:
